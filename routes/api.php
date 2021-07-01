@@ -26,5 +26,9 @@ $api->version('v1', function ($api) {
         });
 
         $api->post('/auth/logout', [AuthController::class, 'logout']);
+
+        $api->group(['prefix' => 'student'], function ($api) {
+            $api->get('/welcome', [\App\Http\Controllers\Student\PageController::class, 'welcome']);
+        });
     });
 });
