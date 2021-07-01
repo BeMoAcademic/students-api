@@ -11,8 +11,8 @@ Register a new user with a `username` and `password`.
     + Body
 
             {
-                "name": "Md Feroj Bepari",
-                "email": "fbepari@bemoacademicconsulting.com",
+                "name": "John Doe",
+                "email": "john@doe.com",
                 "password": "secret"
             }
 
@@ -34,7 +34,7 @@ Login system using `email` and `password`.
     + Body
 
             {
-                "email": "fbepari@bemoacademicconsulting.com",
+                "email": "john@doe.com",
                 "password": "secret"
             }
 
