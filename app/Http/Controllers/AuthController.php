@@ -33,7 +33,7 @@ class AuthController extends Controller
         ]);
 
         return $this->success([
-            'token' => $user->createToken('API Token')->plainTextToken
+            'user' => $user
         ]);
     }
 
@@ -55,9 +55,7 @@ class AuthController extends Controller
             return $this->error('Credentials not match', 401);
         }
 
-        return $this->success([
-            'token' => auth()->user()->createToken('API Token')->plainTextToken
-        ]);
+        return $this->success(null, 'Logged in successfully');
     }
 
     /**

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class PageController extends Controller {
 
     public function welcome(Request $request) {
+
+//        logger($request->all());
         $studentWelcome = GlobalText::where('type', 'studentWelcome')->first() ?? "Welcome to your BeMo's Members Area!";
 
         $popups = $this->getPopups($request)->flatten();
