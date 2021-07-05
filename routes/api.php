@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/auth/logout', [AuthController::class, 'logout']);
-
-    Route::group(['prefix' => 'student'], function () {
-        Route::get('/welcome', [\App\Http\Controllers\Student\PageController::class, 'welcome']);
-    });
+    Route::post('/auth/logout', 'AuthController@logout');
 });
