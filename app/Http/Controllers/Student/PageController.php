@@ -8,9 +8,39 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller {
 
-    public function welcome(Request $request) {
 
-//        logger($request->all());
+    /**
+     * @OA\Info(
+     *      version="1.0.0",
+     *      title="Student API",
+     *      description="Student api information",
+     *      @OA\Contact(
+     *          email="info@bemoacademicconsulting.com"
+     *      )
+     * )
+     */
+
+
+    /**
+     * @OA\Get(
+     *      path="/api/student/welcome",
+     *      operationId="getProjectsList",
+     *      tags={"Users"},
+     *      summary="Get welcome screen contents",
+     *      description="Returns global text and popup content",
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      ),
+     *     security={ * {"sanctum": {}}, * },
+     *     )
+     */
+
+    public function welcome(Request $request) {
         $studentWelcome = GlobalText::where('type', 'studentWelcome')->first() ?? "Welcome to your BeMo's Members Area!";
 
         $popups = $this->getPopups($request)->flatten();
