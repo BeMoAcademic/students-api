@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\UserCreateRequest;
 use App\Http\Requests\User\UserLoginRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -42,16 +43,24 @@ class AuthController extends Controller
             return $this->error('Credentials not match', 401);
         }
 
-        return $this->success(null, 'Logged in successfully');
+        return $this->success([
+            'token' => auth()->user()->createToken('API Token')->plainTextToken
+        ], 'Logged in successfully');
     }
 
     /**
      * Logout
      *
      */
-    public function logout()
+    public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return $this->success(null, 'Token Revoked');
     }

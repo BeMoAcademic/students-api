@@ -12,12 +12,12 @@ class CreateStudentTestTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('student_test', function (Blueprint $table) {
-			$table->id();
-			$table->unsignedBigInteger('test_id')->unsigned();
-			$table->unsignedBigInteger('student_id')->unsigned();
+			$table->increments('id');
+			$table->integer('test_id')->unsigned();
+			$table->integer('student_id')->unsigned();
 			$table->integer('takes')->unsigned();
 			$table->boolean('needs_grading')->default(true);
-			$table->unsignedBigInteger('plan_id')->unsigned()->nullable();
+			$table->integer('plan_id')->unsigned()->nullable();
 			$table->timestamps();
 
 			$table->foreign('test_id')->references('id')->on('tests')

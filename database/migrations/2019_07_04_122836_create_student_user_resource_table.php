@@ -14,9 +14,9 @@ class CreateStudentUserResourceTable extends Migration
     public function up()
     {
         Schema::create('student_user_resource', function (Blueprint $table) {
-            $table->id();
-			$table->unsignedBigInteger('student_id')->unsigned();
-			$table->unsignedBigInteger('user_resource_id')->unsigned();
+            $table->increments('id');
+			$table->integer('student_id')->unsigned();
+			$table->integer('user_resource_id')->unsigned();
 			$table->timestamps();
 
 			$table->foreign('student_id')->references('id')->on('students')

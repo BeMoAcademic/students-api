@@ -12,21 +12,21 @@ class CreateStudentFileResponsesTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('student_file_responses', function (Blueprint $table) {
-			$table->id();
-			$table->unsignedBigInteger('student_file_id')->unsigned();
+			$table->increments('id');
+			$table->integer('student_file_id')->unsigned();
 			$table->morphs('owner');
 			$table->text('comment')->nullable();
 			$table->string('resource')->nullable();
 			$table->string('file_name');
-
+			
 			$table->timestamps();
-
+			
 			$table->foreign('student_file_id')->references('id')->on('student_files')
 				->onDelete('cascade');
-
+			
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *
