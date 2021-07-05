@@ -44,7 +44,7 @@ class PageController extends Controller {
     public function welcome(Request $request) {
         $studentWelcome = GlobalText::where('type', 'studentWelcome')->first() ?? "Welcome to your BeMo's Members Area!";
 
-        $popups = $this->_getPopups($request)->flatten();
+        $popups = $this->getPopups($request)->flatten();
 
         return $this->success([
             'text' => $studentWelcome,
@@ -80,7 +80,7 @@ class PageController extends Controller {
         ]);
     }
 
-    private function _getPopups(Request $request) {
+    private function getPopups(Request $request) {
         // TODO Add login when Student, and other roles are in place
         return GlobalPopup::all();
     }
