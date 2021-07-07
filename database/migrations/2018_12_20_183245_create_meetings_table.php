@@ -12,22 +12,22 @@ class CreateMeetingsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('meetings', function (Blueprint $table) {
-			$table->id();
-			$table->unsignedBigInteger('student_id')->unsigned();
-			$table->unsignedBigInteger('grader_id')->unsigned();
+			$table->increments('id');
+			$table->integer('student_id')->unsigned();
+			$table->integer('grader_id')->unsigned();
 			$table->string('type');
 			$table->timestamp('date_time');
 			$table->softDeletes();
 			$table->timestamps();
-
+			
 			$table->foreign('student_id')->references('id')->on('students')
 				->onDelete('cascade');
 			$table->foreign('grader_id')->references('id')->on('test_graders')
 				->onDelete('cascade');
-
+			
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

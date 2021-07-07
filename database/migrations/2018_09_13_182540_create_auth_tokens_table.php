@@ -14,11 +14,11 @@ class CreateAuthTokensTable extends Migration
     public function up()
     {
         Schema::create('auth_tokens', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
 			$table->string('token',60)->nullable()->unique();
 			$table->timestamps();
-
+	
 			$table->foreign('user_id')->references('id')->on('users')
 				->onDelete('cascade');
         });

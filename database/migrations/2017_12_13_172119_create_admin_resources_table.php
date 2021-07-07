@@ -14,7 +14,7 @@ class CreateAdminResourcesTable extends Migration
     public function up()
     {
         Schema::create('user_resources', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('order')->unsigned();
 			$table->string('user_type');
             $table->string('type');

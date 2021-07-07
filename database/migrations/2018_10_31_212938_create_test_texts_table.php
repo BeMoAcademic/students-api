@@ -14,8 +14,8 @@ class CreateTestTextsTable extends Migration
     public function up()
     {
         Schema::create('test_texts', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('test_id')->unsigned();
+            $table->increments('id');
+            $table->integer('test_id')->unsigned();
             $table->string('type');
             $table->string('title')->default('');
             $table->text('content');
@@ -34,7 +34,7 @@ class CreateTestTextsTable extends Migration
 
             $table->foreign('test_id')->references('id')->on('tests')
                 ->onDelete('cascade');
-
+            
         });
     }
 

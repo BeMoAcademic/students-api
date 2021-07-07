@@ -12,17 +12,17 @@ class CreatePlansTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('plans', function (Blueprint $table) {
-			$table->id();
+			$table->increments('id');
 			$table->string('name');
 			$table->string('program_name');
 			$table->text('description');
 			$table->boolean('document_review')->default(false);
-
+			
 			$table->softDeletes();
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

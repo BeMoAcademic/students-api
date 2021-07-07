@@ -12,14 +12,14 @@ class CreateTestTakersTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('students', function (Blueprint $table) {
-			$table->id();
+			$table->increments('id');
 			$table->boolean('review_notification')->default(false);
 			$table->timestamp('expires_at')->nullable()->default(null);
 			$table->softDeletes();
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

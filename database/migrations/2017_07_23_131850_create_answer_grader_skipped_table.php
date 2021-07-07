@@ -14,7 +14,7 @@ class CreateAnswerGraderSkippedTable extends Migration
     public function up()
     {
         Schema::create('answer_grader_skipped', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
 			$table->integer('answer_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 

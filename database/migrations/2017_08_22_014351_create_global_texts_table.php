@@ -12,7 +12,7 @@ class CreateGlobalTextsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('global_texts', function (Blueprint $table) {
-			$table->id();
+			$table->increments('id');
 			$table->string('type');
 			$table->string('title')->default('');
 			$table->text('content');
@@ -21,7 +21,7 @@ class CreateGlobalTextsTable extends Migration {
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

@@ -14,7 +14,7 @@ class CreateAnswerInstitutionSkippedTable extends Migration
     public function up()
     {
         Schema::create('answer_institution_skipped', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
 			$table->integer('answer_id')->unsigned();
 			$table->integer('institution_id')->unsigned();
         });

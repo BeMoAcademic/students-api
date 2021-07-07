@@ -14,7 +14,7 @@ class CreateTestGraderTable extends Migration
     public function up()
     {
         Schema::create('test_graders', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
 			$table->softDeletes();
 			$table->timestamps();
         });

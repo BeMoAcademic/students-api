@@ -12,20 +12,20 @@ class CreatePlanStudentTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('plan_student', function (Blueprint $table) {
-			$table->id();
-			$table->unsignedBigInteger('student_id')->unsigned();
-			$table->unsignedBigInteger('plan_id')->unsigned();
+			$table->increments('id');
+			$table->integer('student_id')->unsigned();
+			$table->integer('plan_id')->unsigned();
 			$table->timestamps();
-
+			
 			$table->foreign('student_id')->references('id')->on('students')
 				->onDelete('cascade');
-
+			
 			$table->foreign('plan_id')->references('id')->on('plans')
 				->onDelete('cascade');
-
+			
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

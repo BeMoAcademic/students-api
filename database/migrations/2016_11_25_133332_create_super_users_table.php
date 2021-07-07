@@ -14,7 +14,7 @@ class CreateSuperUsersTable extends Migration
     public function up()
     {
         Schema::create('super_users', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
 			$table->softDeletes();
 			$table->timestamps();
         });
