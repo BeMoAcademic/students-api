@@ -12,7 +12,7 @@ class CreateQuestionsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('questions', function (Blueprint $table) {
-			$table->id();
+			$table->increments('id');
 			$table->integer('test_id')->unsigned();
 			$table->integer('order')->unsigned();
 			$table->string('resource')->nullable();
@@ -36,7 +36,7 @@ class CreateQuestionsTable extends Migration {
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

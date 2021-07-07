@@ -16,10 +16,10 @@ class CreateWebhooksTable extends Migration
         Schema::create('webhooks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('form_id');
-	        $table->unsignedBigInteger('plan_id');
+	        $table->integer('plan_id')->unsigned();
 	        $table->string('type')->default('typeform');
             $table->timestamps();
-
+	
 	        $table->foreign('plan_id')->references('id')->on('plans')
 	              ->onDelete('cascade');
         });

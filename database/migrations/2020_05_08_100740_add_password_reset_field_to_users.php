@@ -12,10 +12,10 @@ class AddPasswordResetFieldToUsers extends Migration {
 	 */
 	public function up() {
 		Schema::table('users', function (Blueprint $table) {
-			$table->boolean('password_reset')->default(false);
+			$table->boolean('password_reset')->default(false)->after('user_id');
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

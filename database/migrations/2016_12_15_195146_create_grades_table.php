@@ -12,7 +12,7 @@ class CreateGradesTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('grades', function (Blueprint $table) {
-			$table->id();
+			$table->increments('id');
 			$table->integer('answer_id')->unsigned();
 			$table->text('comment')->nullable();
 			$table->integer('score');
@@ -23,7 +23,7 @@ class CreateGradesTable extends Migration {
 			$table->timestamps();
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *

@@ -12,20 +12,20 @@ class CreateTestTakesTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('test_takes', function (Blueprint $table) {
-			$table->id();
-			$table->unsignedBigInteger('test_id');
-			$table->unsignedBigInteger('student_id');
-			$table->unsignedBigInteger('plan_id')->nullable();
+			$table->increments('id');
+			$table->integer('test_id')->unsigned();
+			$table->integer('student_id')->unsigned();
+			$table->integer('plan_id')->unsigned()->nullable();
 			$table->boolean('finished')->default(false);
 			$table->float('score')->nullable();
 			$table->boolean('needs_grading')->default(true);
-			$table->unsignedBigInteger('test_grader_id')->nullable();
+			$table->integer('test_grader_id')->unsigned()->nullable();
 			$table->boolean('show_notification')->default(true);
 			$table->timestamps();
-
+			
 			$table->foreign('test_id')->references('id')->on('tests')
 				->onDelete('cascade');
-
+			
 			$table->foreign('student_id')->references('id')->on('students')
 				->onDelete('cascade');
 
@@ -33,7 +33,7 @@ class CreateTestTakesTable extends Migration {
 				->onDelete('cascade');
 		});
 	}
-
+	
 	/**
 	 * Reverse the migrations.
 	 *
