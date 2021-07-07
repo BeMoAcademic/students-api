@@ -1,9 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-$api = app('Dingo\Api\Routing\Router');
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +13,9 @@ $api = app('Dingo\Api\Routing\Router');
 |
 */
 
-$api->version('v1', function ($api) {
-    $api->post('/auth/register', [AuthController::class, 'register']);
-    $api->post('/auth/login', [AuthController::class, 'login']);
+Route::post('/auth/register', 'AuthController@register');
+Route::post('/auth/login', 'AuthController@login');
 
-    $api->group(['middleware' => ['auth:sanctum']], function ($api) {
-        $api->get('/me', function(Request $request) {
-            return auth()->user();
-        });
-
-        $api->post('/auth/logout', [AuthController::class, 'logout']);
-    });
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/auth/logout', 'AuthController@logout');
 });
