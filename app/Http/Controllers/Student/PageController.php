@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PlanResource;
 use App\Models\GlobalPopup;
 use App\Models\GlobalText;
 use App\Models\Plan;
@@ -53,10 +54,7 @@ class PageController extends Controller {
     }
 
     public function tests(Request $request) {
-        $globalText = GlobalText::whereIn('type', ['studentSimulations', 'studentCompletedSimulations'])->get();
-        $simulationsTexts = $globalText->where('type', 'studentSimulations')->first();
-        $simulationsCompletedTexts = $globalText->where('type', 'studentCompletedSimulations')->first();
-
+        list($simulationsTexts, $simulationsCompletedTexts) = $this->getSimulationGlobalTexts();
 
         $doneTakes = $request->user()->user->testTakesWithTrashed->where('finished', true)->mapToGroups(function($take) {
             $name = $take->plan_id ? Plan::withTrashed()->find($take->plan_id)->program_name : 'Individual Simulations';
@@ -80,8 +78,26 @@ class PageController extends Controller {
         ]);
     }
 
+    public function programs(Request $request) {
+
+        $plans = $request->user()->user->plans;
+
+        return $this->success(PlanResource::collection($plans));
+    }
+
     private function getPopups(Request $request) {
         // TODO Add login when Student, and other roles are in place
         return GlobalPopup::all();
+    }
+
+    /**
+     * @return array
+     */
+    public function getSimulationGlobalTexts(): array
+    {
+        $globalText = GlobalText::whereIn('type', ['studentSimulations', 'studentCompletedSimulations'])->get();
+        $simulationsTexts = $globalText->where('type', 'studentSimulations')->first();
+        $simulationsCompletedTexts = $globalText->where('type', 'studentCompletedSimulations')->first();
+        return array($simulationsTexts, $simulationsCompletedTexts);
     }
 }

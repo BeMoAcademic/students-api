@@ -18,7 +18,7 @@ trait ApiResponser
     /**
      * Return a success JSON response.
      *
-     * @param array|string $data
+     * @param  $data
      * @param string $message
      * @param int|null $code
      * @return \Illuminate\Http\JsonResponse
