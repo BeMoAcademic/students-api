@@ -9,6 +9,7 @@ use App\Models\Users\SuperUser;
 use App\Models\Users\TestCreator;
 use App\Models\Users\TestGrader;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -38,5 +39,7 @@ class AppServiceProvider extends ServiceProvider
             'Institution' => Institution::class,
             'Admin' => Admin::class
         ]);
+
+        JsonResource::withoutWrapping();
     }
 }
